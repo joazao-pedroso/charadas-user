@@ -40,7 +40,7 @@ export default function CreateCharade() {
 
   return (
     <div className="container mx-auto py-10 px-4 space-y-12">
-        <h1 className="text-4xl font-bold font-serif ">JPcharadas</h1>
+        <a href="/" className="cursor-pointer"><h1 className="mb-10 text-4xl font-bold font-serif">Charadas do JP</h1></a>
         <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm">
           <h1 className="font-bold font-serif text-3xl text-center">Nova charada:</h1>
           <p className="text-muted-foreground text-sm text-center">Crie charadas para o nosso quiz!</p>

@@ -37,24 +37,24 @@ export default function Home() {
                 },
             });
             if (!response.ok) {
-                throw new Error(`Erro ao deletar: ${response.statusText}`);
+                throw new Error(`Erro ao deletar: ${response.statusText}`)
             }
-            console.log("Charada deletada com sucesso!");
+            console.log("Charada deletada com sucesso!")
 
-            setCharadas(charadas.filter((charada) => charada.id !== id));
+            setCharadas(charadas.filter((charada) => charada.id !== id))
 
         } catch (error) {
-            console.error("Erro ao excluir charada:", error);
+            console.error("Erro ao excluir charada:", error)
         }
     };
 
     const toggleFlip = (id: number) => {
-        setFlippedStates((prev) => ({ ...prev, [id]: !prev[id] }));
+        setFlippedStates((prev) => ({ ...prev, [id]: !prev[id] }))
     };
 
     return (
         <div className="mt-5 mx-10">
-            <h1 className="text-4xl font-bold font-serif">Charadas do JP</h1>
+           <a href="/create" className="cursor-pointer"><h1 className="text-4xl font-bold font-serif">Charadas do JP</h1></a>
             <p className="text-2xl mt-5 text-center font-serif text-muted-foreground">Charadas criadas:</p>
             <div className="container mx-auto py-10 px-4 space-y-12 flex items-center justify-center">
                 <div className="charadas items-center justify-center gap-5 border flex-wrap flex w-[95%] max-h-auto min-h-70 rounded-xl py-10 px-10">
@@ -66,7 +66,7 @@ export default function Home() {
                                 transition={{ duration: 0.6 }}
                                 style={{ transformStyle: "preserve-3d" }}
                             >
-                                <div className={`absolute w-full h-full p-4 flex flex-col justify-between items-center border rounded-2xl shadow-lg bg-amber-100 ${flippedStates[item.id] ? "hidden" : "block"}`}>
+                                <div className={`absolute w-full h-full p-4 flex flex-col justify-between items-center border rounded-2xl shadow-lg bg-card ${flippedStates[item.id] ? "hidden" : "block"}`}>
                                 <div className="text-center">
                                         <p className="text-xl font-semibold">Pergunta:</p>
                                         <p className="text-muted-foreground italic font-serif text-xl my-3">"{item.pergunta}"</p>
@@ -100,7 +100,7 @@ export default function Home() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={`absolute w-full h-full p-4 flex flex-col justify-between items-center border rounded-2xl shadow-lg bg-amber-100 rotate-y-180 ${flippedStates[item.id] ? "block" : "hidden"}`}>
+                                <div className={`absolute w-full h-full p-4 flex flex-col justify-between items-center border rounded-2xl shadow-lg bg-card rotate-y-180 ${flippedStates[item.id] ? "block" : "hidden"}`}>
                                     <div className="text-center">
                                         <p className="text-xl font-semibold">Resposta:</p>
                                         <p className="text-muted-foreground italic font-serif text-xl my-3">"{item.resposta}"</p>
