@@ -19,7 +19,7 @@ export default function CreateCharade() {
     const dataWithId = { ...formData, id: uuidv4() }
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/charadas", {
+      const response = await fetch("http://backend-charadas.vercel.app/charadas", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,5 +64,5 @@ export default function CreateCharade() {
           </form>
           </div>
     </div>
-  );
+  )
 }

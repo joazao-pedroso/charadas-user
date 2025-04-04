@@ -74,7 +74,7 @@ export default function Home() {
                                     <div className="w-full flex flex-col gap-2">
                                         <Button variant="outline" className="w-full" onClick={() => toggleFlip(item.id)}>Revelar Charada</Button>
                                         <div className="flex justify-between">
-                                            <Button className="w-[48%]">Editar</Button>
+                                            <Button onClick={() => router.push(`/update?id=${item.id}`) }  className="w-[48%]" >Editar</Button>
                                             <AlertDialog>
                                                 <AlertDialogTrigger asChild>
                                                 <Button variant="destructive" className="hover:bg-red-400 w-[45%]">
@@ -108,7 +108,7 @@ export default function Home() {
                                     <div className="w-full flex flex-col gap-2">
                                         <Button variant="outline" className="w-full" onClick={() => toggleFlip(item.id)}>Voltar</Button>
                                         <div className="flex justify-between">
-                                            <Button className="w-[48%]">Editar</Button>
+                                            <Button onClick={() => router.push(`/update?id=${item.id}`) }  className="w-[48%]">Editar</Button>
                                             <AlertDialog>
                                                 <AlertDialogTrigger asChild>
                                                 <Button variant="destructive" className="hover:bg-red-400 w-[45%]">
