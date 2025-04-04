@@ -36,15 +36,16 @@ export default function Quiz(){
             alert('Por favor insira a resposta!')
         }
         else{
-            if (use_response != charada.resposta){
+            if (use_response.toLocaleLowerCase() != charada.resposta.toLocaleLowerCase()){
                 setTentavias(tentativas - 1)
                 setUser_response('')
                 setRigth(false)
             }
             else{
                 alert('Parabens você acertou!')
-                setUser_response('')
                 handleGetRandomCharade()
+                setUser_response('')
+                
             }
         }
 
@@ -89,7 +90,7 @@ export default function Quiz(){
                     <p className="text-muted-foreground italic font-serif text-xl my-3">
                     &quot;{tentativas <= 0 ? `${charada.resposta}` : '???'}&quot;
                     </p>
-                    <p className="text-green-500">{rigth == false ? 'ERRADA! TENTE NOVAMENTE'  : ''}</p>
+                    <p className="text-red-500">{rigth == false ? 'ERRADA! TENTE NOVAMENTE'  : ''}</p>
                   </div>
                   <div className="w-full flex flex-col gap-2">
                     <Button variant="outline" className="w-full" onClick={() => toggleFlip(charada.id)}>
