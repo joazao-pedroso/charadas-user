@@ -1,6 +1,6 @@
 'use client'
-
-import { useEffect, useState } from "react"
+import  Link  from "next/link"
+import { useEffect, useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
@@ -25,7 +25,8 @@ export default function Update() {
     })
     const [pergunta, setPergunta] = useState('')
     const [resposta, setResposta] = useState('')
-    async function getcharada(id: string) {
+    
+    const getcharada = useCallback(async (id: string) => {
         const response = await fetch(`https://backend-charadas.vercel.app/charadas/${id}`)
         console.log(id)
         if (!response.ok) {
@@ -33,22 +34,29 @@ export default function Update() {
             return
         }
         const data = await response.json()
-        {data ? setCharada(data) : router.push('/')}
-        setPergunta(data.pergunta)
-        setResposta(data.resposta)
-    }
+        if (data) {
+            setCharada(data)
+            setPergunta(data.pergunta)
+            setResposta(data.resposta)
+        } else {
+            router.push('/')
+        }
+    }, [router])
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search)
         const id = urlParams.get('id')
-        console.log(id)
-        {id ? getcharada(id) : router.push('/')} 
-    }, [])
+        if (id) {
+            getcharada(id)
+        } else {
+            router.push('/')
+        }
+    }, [getcharada])
       
         async function handleSubmitForm(formData: CharadaForm) {
       
           try {
-            const response = await fetch(`https://backend-charadas.vercel.app/${charada.id}`, {
+            const response = await fetch(`https://backend-charadas.vercel.app/charadas/${charada.id}`, {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
@@ -69,8 +77,9 @@ export default function Update() {
       
         return (
         <div className="container mx-auto py-10 px-4 space-y-12">
-                <a href="/" className="cursor-pointer"><h1 className="mb-10 text-4xl font-bold font-serif">Charadas do JP</h1></a>
-                <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm">
+                <Link href="/" className="cursor-pointer">
+                <h1 className="mb-10 text-4xl font-bold font-serif">Charadas do JP</h1>
+                </Link>                <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm">
                 <h1 className="font-bold font-serif text-3xl text-center">Editar charada</h1>
                 <p className="text-muted-foreground text-sm text-center">Crie charadas para o nosso quiz!</p>
                 <form onSubmit={handleSubmit(handleSubmitForm)} >

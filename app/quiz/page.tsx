@@ -17,8 +17,8 @@ export default function Quiz(){
     const [use_response, setUser_response] = useState('')
     const [rigth, setRigth] = useState(false)
     async function handleGetRandomCharade() {
-        let response = await fetch('https://backend-charadas.vercel.app/charadas/random')
-        let data = await response.json()
+        const response = await fetch('https://backend-charadas.vercel.app/charadas/random')
+        const data = await response.json()
         setTentavias(3)
         setCharada(data)
         setRigth(false)
@@ -63,7 +63,7 @@ export default function Quiz(){
                   <div className="text-center">
                     <p className="text-xl font-semibold">Pergunta:</p>
                     <p className="text-muted-foreground italic font-serif text-xl my-3">
-                      "{charada.pergunta}"
+                    &quot;{charada.pergunta}&quot;
                     </p>
                     <p className="text-green-500">{rigth == true ? 'PARABENS!'  : ''}</p>
                   </div>
@@ -79,7 +79,7 @@ export default function Quiz(){
                   <div className="text-center">
                     <p className="text-xl font-semibold">Resposta:</p>
                     <p className="text-muted-foreground italic font-serif text-xl my-3">
-                    {tentativas <= 0 ? `"${charada.resposta}"` : '???'}  
+                    &quot;{tentativas <= 0 ? `${charada.resposta}` : '???'}&quot;
                     </p>
                     <p className="text-green-500">{rigth == true ? 'PARABENS!'  : ''}</p>
                   </div>

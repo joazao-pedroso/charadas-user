@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useForm } from "react-hook-form"
 import { v4 as uuidv4 } from "uuid"
 import { useRouter } from "next/navigation"
@@ -19,8 +19,8 @@ export default function CreateCharade() {
     const dataWithId = { ...formData, id: uuidv4() }
 
     try {
-      const response = await fetch("http://backend-charadas.vercel.app/charadas", {
-        method: "POST",
+      const response = await fetch("https://backend-charadas.vercel.app/charadas", {
+        method: "POST", 
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,7 +40,7 @@ export default function CreateCharade() {
 
   return (
     <div className="container mx-auto py-10 px-4 space-y-12">
-        <a href="/" className="cursor-pointer"><h1 className="mb-10 text-4xl font-bold font-serif">Charadas do JP</h1></a>
+        <Link href="/"><h1 className="mb-10 text-4xl font-bold font-serif" >Charadas do JP</h1></Link>
         <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm">
           <h1 className="font-bold font-serif text-3xl text-center">Nova charada:</h1>
           <p className="text-muted-foreground text-sm text-center">Crie charadas para o nosso quiz!</p>

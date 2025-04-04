@@ -20,7 +20,7 @@ export default function Home() {
 
     useEffect(() => {
         const fetchCharadas = async () => {
-            const response = await fetch("http://127.0.0.1:5000/charadas")
+            const response = await fetch("https://backend-charadas.vercel.app/charadas")
             const data = await response.json()
             setCharadas(data)
         }
@@ -30,7 +30,7 @@ export default function Home() {
 
     const handleDeleteCharade = async (id: number) => {
         try {
-            const response = await fetch(`http://127.0.0.1:5000/charadas/${id}`, {
+            const response = await fetch(`https://backend-charadas.vercel.app/charadas/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function Home() {
                                 <div className={`absolute w-full h-full p-4 flex flex-col justify-between items-center border rounded-2xl shadow-lg bg-card ${flippedStates[item.id] ? "hidden" : "block"}`}>
                                 <div className="text-center">
                                         <p className="text-xl font-semibold">Pergunta:</p>
-                                        <p className="text-muted-foreground italic font-serif text-xl my-3">"{item.pergunta}"</p>
+                                        <p className="text-muted-foreground italic font-serif text-xl my-3">&quot;{item.pergunta}&quot;</p>
                                     </div>
                                     <div className="w-full flex flex-col gap-2">
                                         <Button variant="outline" className="w-full" onClick={() => toggleFlip(item.id)}>Revelar Charada</Button>
@@ -103,7 +103,7 @@ export default function Home() {
                                 <div className={`absolute w-full h-full p-4 flex flex-col justify-between items-center border rounded-2xl shadow-lg bg-card rotate-y-180 ${flippedStates[item.id] ? "block" : "hidden"}`}>
                                     <div className="text-center">
                                         <p className="text-xl font-semibold">Resposta:</p>
-                                        <p className="text-muted-foreground italic font-serif text-xl my-3">"{item.resposta}"</p>
+                                        <p className="text-muted-foreground italic font-serif text-xl my-3">&quot;{item.resposta}&quot;</p>
                                     </div>
                                     <div className="w-full flex flex-col gap-2">
                                         <Button variant="outline" className="w-full" onClick={() => toggleFlip(item.id)}>Voltar</Button>
